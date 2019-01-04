@@ -1,3 +1,5 @@
+## 第一星期
+
 Machine learning algorithms:
 
 - Supervised learning
@@ -69,6 +71,8 @@ We can measure the accuracy of our hypothesis function by using a **cost functio
 回答
 
 [详解梯度下降法求解线性模型参数](https://blog.csdn.net/ybdesire/article/details/52895274)
+
+## 第二星期
 
 ### Multiple Features
 
