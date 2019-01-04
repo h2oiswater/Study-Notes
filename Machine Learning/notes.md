@@ -10,7 +10,7 @@ Others:
 
 Reinforcement learning, recommender systems.
 
-## Supervised Learning
+#### Supervised Learning
 
 In supervised learning, we are given a data set and already know what our correct output should look like, having the idea that there is a relationship between the input and the output.
 
@@ -20,7 +20,7 @@ Supervised learning problems are categorized into "regression" and "classificati
 
 > Supervised Learning refers to the fact that we gave the algorithm a data set in which the, called "right answers" were given.
 
-## Unsupervised Learning
+#### Unsupervised Learning
 
 Unsupervised learning allows us to approach problems with little or no idea what our results should look like. We can derive structure from data where we don't necessarily know the effect of the variables.
 
@@ -28,7 +28,7 @@ We can derive this structure by clustering the data based on relationships among
 
 With unsupervised learning there is no feedback based on the prediction results.
 
-## Model Representation
+#### Model Representation
 
 Regression Problem
 
@@ -93,10 +93,44 @@ x同时含有上下标代表具体的样本，具体的变量
 
 前者需要每一个特征值除以最大特征值与最小特征值之间的差(变量的标准差)，后者需要每一个特征值减去特征值的平均值后除以最大特征值与最小特征值之间的差(变量的标准差)。
 
-
-
 #### Gradient Descent in Practice II - Learning Rate
 
-If\alphaαis too small: slow convergence.
+If a(alpha) too small: slow convergence.
 
-If\alphaαis too large: ￼may not decrease on every iteration and thus may not converge.
+If a(aloha) too large: ￼may not decrease on every iteration and thus may not converge.
+
+#### Features and Polynomial Regression
+
+我们可以处理我们的特征值来适应不同的模型。
+
+#### Normal Equation正规方程
+
+对代价函数微分，并使导数为0，则可计算出最优解，如果是多元的，则需重复计算。
+
+使用正规方程则可以直接计算出最优解。
+
+The following is a comparison of gradient descent and the normal equation:
+
+| Gradient Descent           | Normal Equation                                |
+| -------------------------- | ---------------------------------------------- |
+| Need to choose alpha       | No need to choose alpha                        |
+| Needs many iterations      | No need to iterate                             |
+| O (kn^2kn2)                | O (n^3n3), need to calculate inverse ofX^TXXTX |
+| Works well when n is large | Slow if n is very large                        |
+
+With the normal equation, computing the inversion has complexity\mathcal{O}(n^3)O(n3). So if we have a very large number of features, the normal equation will be slow. In practice, when n exceeds 10,000 it might be a good time to go from a normal solution to an iterative process.
+
+#### Normal Equation Noninvertibility
+
+因为要计算逆矩阵，但不是所有的矩阵都可逆，所以有一些情况可能导致不可逆。
+
+1. 特征值是冗余的（redundant），删掉一些就好。
+
+2. 特征值太多，多到接近于训练样本，这个时候考虑使用regularization（后面的课程会说）或者删掉一些。
+
+括号中，大写代表上标吧，小写代表下标，同时存在则使用-分开
+
+if X(T) * X is **noninvertible,**the common causes might be having :
+
+- Redundant features, where two features are very closely related (i.e. they are linearly dependent)
+- Too many features (e.g. m ≤ n). In this case, delete some features or use "regularization" (to be explained in a later lesson).
