@@ -79,7 +79,7 @@ x同时含有上下标代表具体的样本，具体的变量
 
 我们的假设函数
 
-![Multiple Features Hypothesis Function](imgs/Multiple Features Hypothesis Function.png)
+![Multiple Features Hypothesis Function](imgs/MultipleFeaturesHypothesisFunction.png)
 
 #### Gradient Descent for Multiple Variables
 
