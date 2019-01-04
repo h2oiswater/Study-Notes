@@ -87,6 +87,16 @@ x同时含有上下标代表具体的样本，具体的变量
 
 #### Gradient Descent for Multiple Variables
 
+为了让梯度下降收敛的更快，我们可以对样本中的特征值进行处理。
+
+我们让特征值的值处于 -1 到 1的区间，或者 -0.5 到 0.5的区间。
+
+前者需要每一个特征值除以最大特征值与最小特征值之间的差(变量的标准差)，后者需要每一个特征值减去特征值的平均值后除以最大特征值与最小特征值之间的差(变量的标准差)。
 
 
 
+#### Gradient Descent in Practice II - Learning Rate
+
+If\alphaαis too small: slow convergence.
+
+If\alphaαis too large: ￼may not decrease on every iteration and thus may not converge.
