@@ -134,3 +134,61 @@ if X(T) * X is **noninvertible,**the common causes might be having :
 
 - Redundant features, where two features are very closely related (i.e. they are linearly dependent)
 - Too many features (e.g. m ≤ n). In this case, delete some features or use "regularization" (to be explained in a later lesson).
+
+## 第三星期
+
+#### Classification
+
+介绍了线性回归算法为什么不适用于分类。
+
+#### Hypothesis Representation
+
+Our new form uses the "Sigmoid Function," also called the "Logistic Function":
+
+![SigmoidFunction](imgs/SigmoidFunction.png)
+
+The following image shows us what the sigmoid function looks like:
+
+![SigmoidFunctionFigure](imgs/SigmoidFunctionFigure.png)
+
+Sigmoid or Logistic Function可以算出，给定参数，Y = 1的概率R1，或着Y = 0的概率R2，因为只分两类，所以 1 = R1 + R2
+
+![LogisticFunctionProp](imgs/LogisticFunctionProp.png)
+
+#### Decision Boundary
+
+我们可以根据z = 0来得出分界线的函数，这个函数可能是一条线，或者一个圈，还有个各种功能奇怪的形状。
+
+#### Cost Function
+
+如果使用线性回归的平方差代价函数，那么代价函数不是一个凸函数，所以使用了一个新的代价函数。
+
+![LogisticCostFunction](imgs/LogisticCostFunction.png)
+
+
+
+#### Simplified Cost Function and Gradient Descent
+
+上一节的分段表达式可以写为下图，因为y只有0，1两种取值，所以这种写法等价于上面的分段写法。
+
+![LogisticCostFunctionOne](imgs/LogisticCostFunctionOne.png)
+
+![LogisticCostFunctionVectorized](imgs/LogisticCostFunctionVectorized.png)
+
+![LogisticCostFunctionGradientDescent](imgs/LogisticCostFunctionGradientDescent.png)
+
+
+
+
+
+#### Advanced Optimization
+
+在线性回归里面说过，我们可以通过归一化我们的特征值或者选取合适的学习速率来让梯度下降更快。
+
+这一节讲述了比梯度下降更高级的算法，这些算法效率很高。
+
+"Conjugate gradient", "BFGS", and "L-BFGS" are more sophisticated, faster ways to optimize θ that can be used instead of gradient descent. We suggest that you should not write these more sophisticated algorithms yourself (unless you are an expert in numerical computing) but use the libraries instead, as they're already tested and highly optimized. Octave provides them.
+
+在Octave中调用时，我们只需要提供代价函数，以及代价函数的偏导数的计算方法，则可以调用这些高级的算法。
+
+***别问，问就要思考十年！***
