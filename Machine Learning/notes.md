@@ -165,8 +165,6 @@ Sigmoid or Logistic Function可以算出，给定参数，Y = 1的概率R1，或
 
 ![LogisticCostFunction](imgs/LogisticCostFunction.png)
 
-
-
 #### Simplified Cost Function and Gradient Descent
 
 上一节的分段表达式可以写为下图，因为y只有0，1两种取值，所以这种写法等价于上面的分段写法。
@@ -176,10 +174,6 @@ Sigmoid or Logistic Function可以算出，给定参数，Y = 1的概率R1，或
 ![LogisticCostFunctionVectorized](imgs/LogisticCostFunctionVectorized.png)
 
 ![LogisticCostFunctionGradientDescent](imgs/LogisticCostFunctionGradientDescent.png)
-
-
-
-
 
 #### Advanced Optimization
 
@@ -192,3 +186,65 @@ Sigmoid or Logistic Function可以算出，给定参数，Y = 1的概率R1，或
 在Octave中调用时，我们只需要提供代价函数，以及代价函数的偏导数的计算方法，则可以调用这些高级的算法。
 
 ***别问，问就要思考十年！***
+
+#### Multiclass Classification: One-vs-all
+
+我们可以把多分类问题变成只有两种结果的分类问题。
+
+比如我们现在有n中结果，我们从i开始，分别把i作为一种结果，除了i的其他所有结果为一种结果，写出一个假设函数，重复n次。
+
+当我们需要分类时，只需把参数带入我们n个假设函数中，得到的结果最大的那个为本次预测结果。
+
+Now we will approach the classification of data when we have more than two categories. Instead of y = {0,1} we will expand our definition so that y = {0,1...n}.
+
+Since y = {0,1...n}, we divide our problem into n+1 (+1 because the index starts at 0) binary classification problems; in each one, we predict the probability that 'y' is a member of one of our classes.
+
+![MulticlassClassificationStep](imgs/MulticlassClassificationStep.png)
+
+We are basically choosing one class and then lumping all the others into a single second class. We do this repeatedly, applying binary logistic regression to each case, and then use the hypothesis that returned the highest value as our prediction.
+
+![MulticlassClassificationSummarize](imgs/MulticlassClassificationSummarize.png)
+
+### Solving the Problem of Overfitting
+
+#### The Problem of Overfitting
+
+This terminology is applied to both linear and logistic regression. There are two main options to address the issue of overfitting:
+
+1) Reduce the number of features:
+
+- Manually select which features to keep.
+- Use a model selection algorithm (studied later in the course).
+
+2) Regularization
+
+- Keep all the features, but reduce the magnitude of parameters theta(j)
+- Regularization works well when we have a lot of slightly useful features.
+
+#### Cost Function
+
+过度拟合导致了对数据集的适配非常好，却不能应用到实际问题中，通过在代价函数中加入对 theta 的一点制约，来减少过度拟合的出现。
+
+![SolvingtheProblemofOverfittingCostFunction](imgs/SolvingtheProblemofOverfittingCostFunction.png)
+
+#### Regularized Linear Regression
+
+添加了对参数的制约后，求解的步骤变化了一些
+
+我们一般不惩罚theta0， 在算法实现上，可以把theta0 = 0，这样0^2 = 0
+
+![RegularizedLogisticRegression1](imgs/RegularizedLogisticRegression1.png)
+
+正规方程中，添加了lambda之后，所有矩阵都可逆了。
+
+![RegularizedLogisticRegression2](imgs/RegularizedLogisticRegression2.png)
+
+#### Regularized Logistic Regression
+
+![LinearLogisticRegression1](imgs/LinearLogisticRegression1.png)
+
+同线性回归一样，我们不惩罚theta0。
+
+![RegularizedLogisticRegressionPPT](imgs/RegularizedLogisticRegressionPPT.png)
+
+不会微分好伤心，截个图死记硬背先。
